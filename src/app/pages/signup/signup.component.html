@@ -1,0 +1,133 @@
+<div class="container-xl">
+  <div class="contenedor">
+    <div class="progress-container">
+      <div class="progress-bar step-1" [class.filled]="isPersonaForm"></div>
+      <div class="progress-bar step-2" [class.filled]="!isPersonaForm"></div>
+    </div>
+    <h2>{{ isPersonaForm ? 'Registro de Persona' : 'Registro de Usuario' }}</h2>
+    <form [formGroup]="personaForm" (ngSubmit)="registrar()" id="registroForm">
+      <div *ngIf="isPersonaForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="primerNombre">Primer Nombre</label>
+            <input type="text" id="primerNombre" formControlName="primerNombre" placeholder="Ingrese su primer nombre">
+            <div *ngIf="personaForm.get('primerNombre')?.invalid && personaForm.get('primerNombre')?.touched" class="text-danger">
+              El primer nombre es obligatorio
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="segundoNombre">Segundo Nombre</label>
+            <input type="text" id="segundoNombre" formControlName="segundoNombre" placeholder="Ingrese su segundo nombre">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="primerApellido">Primer Apellido</label>
+            <input type="text" id="primerApellido" formControlName="primerApellido" placeholder="Ingrese su primer apellido">
+            <div *ngIf="personaForm.get('primerApellido')?.invalid && personaForm.get('primerApellido')?.touched" class="text-danger">
+              El primer apellido es obligatorio
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="segundoApellido">Segundo Apellido</label>
+            <input type="text" id="segundoApellido" formControlName="segundoApellido" placeholder="Ingrese su segundo apellido">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="genero">Género</label>
+            <select id="genero" formControlName="genero">
+              <option value="" disabled selected>Seleccione su género</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+              <option value="otro">Otro</option>
+            </select>
+            <div *ngIf="personaForm.get('genero')?.invalid && personaForm.get('genero')?.touched" class="text-danger">
+              Seleccione su género
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="documentoId">Tipo de Documento</label>
+            <select id="documentoId" formControlName="documentoId">
+              <option value=""  disabled selected>Seleccione el tipo de documento</option>
+              <option *ngFor="let tipdocumento of  documentoTip" [value]="tipdocumento.id">{{tipdocumento.nombre}}</option>
+            </select>
+            <div *ngIf="personaForm.get('documentoId')?.invalid && personaForm.get('documentoId')?.touched" class="text-danger">
+              Seleccione el tipo de documento
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="numeroDocumento">Número de Documento</label>
+            <input type="number" id="numeroDocumento"  min="1000000000" max="9999999999"  step="1" (input)="validarNumeroDocumento($event)" formControlName="numeroDocumento" placeholder="Ingrese su número de documento">
+            <div *ngIf="personaForm.get('numeroDocumento')?.invalid && personaForm.get('numeroDocumento')?.touched" class="text-danger">
+              Ingrese un número de documento válido
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cumpleanios">Fecha de Nacimiento</label>
+            <input type="date" id="cumpleanios" formControlName="cumpleanios" max="2010-12-31">
+            <div *ngIf="personaForm.get('cumpleanios')?.invalid && personaForm.get('cumpleanios')?.touched" class="text-danger">
+              Ingrese una fecha válida
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ciudadId">Ciudad</label>
+          <select id="ciudadId" formControlName="ciudadId">
+            <option value="" selected disabled>Seleccione su ciudad</option>
+            <option *ngFor="let ciudades of ciudad" [value]="ciudades.id">{{ciudades.nombre}}</option>
+          </select>
+          <div *ngIf="personaForm.get('ciudadId')?.invalid && personaForm.get('ciudadId')?.touched" class="text-danger">
+            Seleccione su ciudad
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-submit">Siguiente</button>
+        </div>
+      </div>
+    </form>
+
+    <form *ngIf="!isPersonaForm" [formGroup]="usuarioForm" (ngSubmit)="registrar()" id="registroFormUsuario">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombreUsuario">Nombre de Usuario *</label>
+          <input type="text" id="nombreUsuario" formControlName="nombreUsuario" placeholder="Ingrese su nombre de usuario">
+          <div *ngIf="usuarioForm.get('nombreUsuario')?.invalid && usuarioForm.get('nombreUsuario')?.touched" class="text-danger">
+            Nombre de usuario requerido
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo Electrónico *</label>
+          <input type="email" id="correo" formControlName="correo" placeholder="Ingrese su correo electrónico">
+          <div *ngIf="usuarioForm.get('correo')?.invalid && usuarioForm.get('correo')?.touched" class="text-danger">
+            Ingrese un correo electrónico válido
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contrasena">Contraseña *</label>
+          <input type="password" id="contrasena" formControlName="contrasena" placeholder="Ingrese su contraseña">
+          <div *ngIf="usuarioForm.get('contrasena')?.invalid && usuarioForm.get('contrasena')?.touched" class="text-danger">
+            <div *ngIf="usuarioForm.get('contrasena')?.errors?.['required']">La contraseña es requerida</div>
+            <div *ngIf="usuarioForm.get('contrasena')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres</div>
+            <div *ngIf="usuarioForm.get('contrasena')?.errors?.['weakPassword']">La contraseña es débil. Usa mayúsculas, números o símbolos.</div>
+          </div>
+          <p>Fortaleza: {{passwordStrength}}</p>
+        </div>
+        <div class="form-group">
+          <label for="fotoPerfil">Foto de Perfil *</label>
+          <input type="file" id="fotoPerfil" (change)="onFileChange($event)" accept="image/*">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit" [disabled]="usuarioForm.invalid">Registrar Usuario</button>
+      </div>
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,21 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;            /* Utiliza Flexbox */
+  height: 100vh;          /* Asegura que ocupe toda la altura de la ventana */
+}
+
+app-menu {
+  width: 250px;
+  z-index: 1;
+  margin-right: 12px;
+}
+
+/* router-outlet {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+} */
