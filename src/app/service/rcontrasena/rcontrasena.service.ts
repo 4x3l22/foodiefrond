@@ -1,5 +1,7 @@
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ICorreoenviar } from '../interface/ICorreoenviar';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class RcontrasenaService {
 
   constructor(private http: HttpClient) { }
 
-  validarCorreo(correo: string){
+  validarCorreo(correo: ICorreoenviar){
     const  headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(`${this.url}/${correo}`, {headers});
   }

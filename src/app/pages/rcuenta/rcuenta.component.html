@@ -6,11 +6,11 @@
       <h2 class="text-center mb-3">Recuperar Contraseña</h2>
       <p class="text-center">¿Olvidaste tu contraseña? No te preocupes, ¡te ayudamos a recuperarla!</p>
       <p class="text-center">Ingresa tu correo electrónico y te enviaremos instrucciones para restablecerla.</p>
-      <form >
+      <form [formGroup]="formCorreo" (ngSubmit)="validarCorreo()">
           <div class="mb-3">
-              <input type="email" class="campo form-control" placeholder="Email">
+              <input type="email" formControlName="correo" class="campo form-control" placeholder="Correo">
           </div>
-          <button type="submit" class="btn-custom">Enviar instrucciones</button>
+          <button type="submit" class="btn-custom" [disabled]="!formCorreo.valid">Enviar instrucciones</button>
       </form>
       <div class="back-to-login">
           <p>¿Recordaste tu contraseña? <a (click)="navigateTo('login')">Inicia sesión</a></p>
