@@ -29,11 +29,13 @@ import { RecetarioComponent } from './pages/iniciousuario/recetario/recetario.co
 import { SocialuserComponent } from './pages/iniciousuario/socialuser/socialuser.component';
 import { PerfilusuarioComponent } from './pages/iniciousuario/perfilusuario/perfilusuario.component';
 import {ComentariouserComponent} from "./pages/iniciousuario/comentariouser/comentariouser.component";
+import { RcuentaComponent } from './pages/rcuenta/rcuenta.component';
 
 export const routes: Routes = [
   {  path: 'login', component: LoginComponent },
   {  path: 'landing', component:  LandingComponent },
   {  path: 'signup', component: SignupComponent},
+  {  path: 'recupercontra', component: RcuentaComponent},
   {   path: '', redirectTo: 'landing', pathMatch: 'full' },
   {
     path: 'star',

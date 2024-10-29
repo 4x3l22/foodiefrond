@@ -1,7 +1,10 @@
 body {
-  background-color: #f5ebe1;
-  font-family: 'Arial', sans-serif;
+  /* background-image: url('img/hamburger-7-svgrepo-com.svg'); */
+  background-size: 100px;
+  background-repeat: repeat;
+  opacity: 0.1;
 }
+
 
 .login-container {
   display: flex;
@@ -11,7 +14,7 @@ body {
 }
 
 .login-card {
-  background: white;
+  background: linear-gradient(135deg, #f8f5f0, #ffffff);
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -39,12 +42,13 @@ body {
 }
 
 .btn-custom {
-  background-color: #28a745;
+  background: linear-gradient(90deg, #34d058, #28a745); /* Verde fresco */
   border: none;
   border-radius: 25px;
   color: white;
   padding: 0.75rem 1.5rem;
   width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .social-icons {
@@ -66,7 +70,7 @@ body {
 }
 
 .signup-link a {
-  color: #28a745;
+  color: #ff8c00; /* Naranja comida */
   text-decoration: none;
   font-weight: bold;
 }
@@ -80,4 +84,26 @@ body {
 .campo{
   z-index: 1;
   position: relative;
+}
+
+.recover-link {
+  text-align: right;
+  margin-top: 5px;
+}
+
+.recover-link a {
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+.recover-link a:hover {
+  color: #28a745;
+  border-bottom: 1px solid #28a745;
+}
+
+.form-control:focus {
+  border-color: #34d058;
+  box-shadow: 0 0 5px rgba(52, 208, 88, 0.5);
 }

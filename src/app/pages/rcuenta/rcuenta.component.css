@@ -1,0 +1,63 @@
+.password-recovery-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5ebe1;
+  font-family: 'Arial', sans-serif;
+}
+
+.password-recovery-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.logo-image {
+  width: 80px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  border-radius: 25px;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-custom {
+  background-color: #28a745;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.back-to-login {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.back-to-login a {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: bold;
+}
+.foto{
+  width: 90px;
+  background-color: #000;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 50%;
+}
+.logo-b{
+  display: flex;
+  justify-content: center;
+}
