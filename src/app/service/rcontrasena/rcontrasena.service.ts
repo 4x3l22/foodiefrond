@@ -8,13 +8,12 @@ import { ICorreoenviar } from '../interface/ICorreoenviar';
 })
 export class RcontrasenaService {
 
-  private url = 'http://localhost:9191/api/CodigoContrasena';
+  private url = 'http://localhost:9191/api/CodigoContrasena/verificar-correo';
 
   constructor(private http: HttpClient) { }
 
-  validarCorreo(correo: ICorreoenviar){
-    const  headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(`${this.url}/${correo}`, {headers});
+  validarCorreo(correo: ICorreoenviar): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.url, correo, { headers, responseType: 'text' });
   }
-
 }

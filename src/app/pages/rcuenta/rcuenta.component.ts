@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RcontrasenaService } from '../../service/rcontrasena/rcontrasena.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ICorreoenviar } from '../../service/interface/ICorreoenviar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rcuenta',
@@ -21,7 +22,7 @@ export class RcuentaComponent {
   )
   {
     this.formCorreo = new FormGroup({
-      correo : new FormControl('')
+      correo : new FormControl('',[Validators.required])
     })
   }
 
@@ -33,12 +34,22 @@ export class RcuentaComponent {
     const ncorreo: ICorreoenviar = {
       correo: this.formCorreo.value.correo
     }
+
     this.service.validarCorreo(ncorreo).subscribe({
       next: (response) => {
-        if(response == 'OK'){
-          console.log('Correo valido');
+        if(response === 'Correo verificado, usuario existe.') {
+          Swal.fire({
+            title: 'Exitoso',
+            icon: 'success',
+            text: 'El código fue enviado, revisa tu bandeja de entrada',
+            confirmButtonText: 'Entendido'
+          })
         }
+      },
+      error: (error) => {
+        console.error('Error en la validación del correo:', error);
       }
-    })
+    });
+
   }
 }
